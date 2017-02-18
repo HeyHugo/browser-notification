@@ -1,9 +1,14 @@
 {
   "name": "browser-notification",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small lib wrapping browsers native Notification-API adding useful default behaviour.",
   "main": "lib/index.js",
   "module": "es/index.js",
+  "files": [
+    "es",
+    "lib",
+    "src"
+  ],
   "scripts": {
     "build:es": "BABEL_ENV=es babel src --out-dir es",
     "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir lib",
