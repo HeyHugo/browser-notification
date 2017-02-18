@@ -1,0 +1,37 @@
+{
+  "name": "browser-notification",
+  "version": "1.0.0",
+  "description": "Small lib wrapping browsers native Notification-API adding useful default behaviour.",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "scripts": {
+    "build:es": "BABEL_ENV=es babel src --out-dir es",
+    "build:commonjs": "BABEL_ENV=commonjs babel src --out-dir lib",
+    "build": "npm run build:commonjs && npm run build:es",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HeyHugo/browser-notification.git"
+  },
+  "keywords": [
+    "browser-notification",
+    "Notification",
+    "browsernotification"
+  ],
+  "author": "Hugo Heyman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HeyHugo/browser-notification/issues"
+  },
+  "homepage": "https://github.com/HeyHugo/browser-notification#readme",
+  "devDependencies": {
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0"
+  },
+  "dependencies": {
+    "babel-runtime": "^6.23.0"
+  }
+}
