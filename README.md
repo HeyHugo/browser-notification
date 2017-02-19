@@ -1,6 +1,6 @@
 # browser-notification
 
-Small library wrapping browsers native [Notification-API](https://developer.mozilla.org/en-US/docs/Web/API/Notification) with some useful default behavior.
+Small library built around browsers native [Notification-API](https://developer.mozilla.org/en-US/docs/Web/API/Notification) with some useful default behavior.
 (A particular good fit for chat/messaging -type applications)
 
 ### Install
@@ -28,7 +28,8 @@ notifier.notify('This is the title.', {body: '...and this is the body'});
 
 **browser-notification does just a few things**
 - Look for [browser support](http://caniuse.com/#feat=notifications) and ask for user permission
-- Only ever fire actual notifications if API is available + permitted and browser tab is not already focused. So if notifications is available `notify` will fire otherwise it's basically a no-op function.
+- For API simplicity one can always fire `notify()` since in case it's not available it's a just a no-op.
+- If browser tab is already focused `notify()` will not fire a notification.
 - Clicking a notification will focus the browser tab that fired the notification.
 
 **Note** - The underlying Notifications API for permission is async so if you want to initialize `BrowserNotification` at the same time as firing `notify`, you must first resolve `BrowserNotification.available` -promise to ensure initialization is complete, see API and example below.
