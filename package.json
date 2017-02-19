@@ -1,6 +1,6 @@
 {
   "name": "browser-notification",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Small lib wrapping browsers native Notification-API adding useful default behaviour.",
   "browser": "dist/browser-notification.js",
   "main": "lib/index.js",
