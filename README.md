@@ -11,6 +11,7 @@ or
 ```
 npm install browser-notification --save
 ```
+The library has no dependencies and size is less than 1kB (minified + gzipped)
 
 ### Usage
 

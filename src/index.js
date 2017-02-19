@@ -1,5 +1,18 @@
 function BrowserNotification(options) {
 
+  // Handle old browsers - this way we can skip polyfill Promise and Object.assign
+  if (!window.hasOwnProperty('Notification')) {
+    console.info("This browser does not support notifications");
+
+    // Return no-op function and mock promise
+    return {
+      notify: () => {},
+      availablePromise: {
+        then: (fn) => { fn(false); }
+      }
+    };
+  }
+
   const defaults = {
     timeout: 0,
     cooldown: 0,
@@ -7,12 +20,8 @@ function BrowserNotification(options) {
   };
   const settings = Object.assign(defaults, options);
 
-  const isAvailable = new Promise((resolve, reject) => {
-    if (!("Notification" in window)) {
-      console.info("This browser does not support desktop notification");
-      resolve(false);
-    }
-    else if (Notification.permission === 'granted') {
+  const availablePromise = new Promise((resolve, reject) => {
+    if (Notification.permission === 'granted') {
       resolve(true);
     }
     else if (Notification.permission !== 'denied') {
@@ -31,7 +40,7 @@ function BrowserNotification(options) {
   let cooldownActive = false;
   let focused = true;
 
-  isAvailable.then((result) => {
+  availablePromise.then((result) => {
     available = result;
   });
 
@@ -72,7 +81,7 @@ function BrowserNotification(options) {
 
   return {
     notify: notify,
-    isAvailable: isAvailable
+    availablePromise: availablePromise
   };
 }
 
