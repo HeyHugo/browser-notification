@@ -11,7 +11,8 @@ or
 ```
 npm install browser-notification --save
 ```
-The library has no dependencies and size is less than 1kB (minified + gzipped)
+The library has no dependencies and size is less than 1kB (minified + gzipped).
+A UMD build is available in `/dist` of the npm package.
 
 ### Usage
 
