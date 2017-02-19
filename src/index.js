@@ -65,13 +65,13 @@ function BrowserNotification(options) {
       n.close();
     }
 
-    if (settings.timeout !== null) {
+    if (settings.timeout !== 0) {
       window.setTimeout(() => {
         n.close();
       }, settings.timeout);
     }
 
-    if (settings.cooldown !== null) {
+    if (settings.cooldown !== 0) {
       cooldownActive = true;
       window.setTimeout(() => {
         cooldownActive = false;
