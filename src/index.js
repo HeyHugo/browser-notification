@@ -17,8 +17,7 @@ function BrowserNotification(options) {
 
   const defaults = {
     timeout: 0,
-    cooldown: 0,
-    onClick: () => {}
+    cooldown: 0
   };
   const settings = Object.assign(defaults, options);
 
@@ -62,7 +61,6 @@ function BrowserNotification(options) {
 
     n.onclick = () => {
       window.focus();
-      settings.onClick();
       n.close();
     };
 

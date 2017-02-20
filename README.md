@@ -43,8 +43,6 @@ notifier.notify('This is the title.', {body: '...and this is the body'});
 `timeout` - disabled by default
     - Timeout (auto-close) notifications after a certain time since creation.
 
-`onClick` - noop by default
-Notification click-callback if you need to do something more than just focus tab.
 
 ### API
 `BrowserNotification({options})`
@@ -55,7 +53,6 @@ Default options:
 {
   timeout: 0,  // Set a time (ms) > 0 to activate
   cooldown: 0,  // Set a time (ms) > 0 to activate
-  onClick: function() {/* A noop function */}
 }
 ```
 
