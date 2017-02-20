@@ -8,8 +8,8 @@ Small library built around browsers native [Notification-API](https://developer.
 - Clicking a notification will focus the browser tab that fired the notification.
 - `ignoreFocused` - If browser tab is already focused `notify()` -call will be ignored. **optional, default: true**
 - For API simplicity one can always fire `notify()` since in case Notifications are not available it's just a no-op.
-- Optional `cooldown` - milliseconds before consecutive notification can be fired. (Disabled by default)
-- Optional `timeout` - milliseconds to wait before auto-closing notifications. (Disabled by default)
+- `cooldown` - milliseconds before consecutive notification can be fired. **optional, default: 0**
+- `timeout` - milliseconds to wait before auto-closing notifications. **optional, default: 0 (disabled)**
 
 ### Install
 ```
