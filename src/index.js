@@ -54,8 +54,8 @@ function BrowserNotification(options) {
   };
 
   function notify(title, notifyOptions) {
-      return;
     if (!available || ignoreFocused && focused || cooldownActive) {
+      return null;
     }
 
     const n = new Notification(title, notifyOptions);
@@ -83,6 +83,8 @@ function BrowserNotification(options) {
         settings.cooldown
       );
     }
+
+    return n;
   }
 
   return {

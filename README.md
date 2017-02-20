@@ -51,6 +51,8 @@ Default options:
 
 `BrowserNotification.notify(title, {options})`
 Takes the same arguments at the native [Notification API call](https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification)
+returns the Notification object or null if notification was not sent.
+_The Notification object can be used to attach event handlers onclick/onclose/onerror/onshow_
 
 
 `BrowserNotification.availablePromise`
