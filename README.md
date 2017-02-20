@@ -5,8 +5,8 @@ Small library built around browsers native [Notification-API](https://developer.
 
 **browser-notification does just a few things**
 - Look for [browser support](http://caniuse.com/#feat=notifications) and ask for user permission when initialized.
-- If browser tab is already focused `notify()` will not fire a notification.
 - Clicking a notification will focus the browser tab that fired the notification.
+- `ignoreFocused` - If browser tab is already focused `notify()` -call will be ignored. **optional, default: true**
 - For API simplicity one can always fire `notify()` since in case Notifications are not available it's just a no-op.
 - Optional `cooldown` - milliseconds before consecutive notification can be fired. (Disabled by default)
 - Optional `timeout` - milliseconds to wait before auto-closing notifications. (Disabled by default)
@@ -43,6 +43,7 @@ Default options:
 
 ```
 {
+  ignoreFocused: true, // ignore notify() -calls when browser tab is already focused.
   timeout: 0,  // Set a time (ms) > 0 to activate
   cooldown: 0,  // Set a time (ms) > 0 to activate
 }
