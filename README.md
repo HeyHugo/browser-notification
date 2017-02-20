@@ -34,15 +34,7 @@ const notifier = BrowserNotification();
 notifier.notify('This is the title.', {body: '...and this is the body'});
 ```
 
-**Note** - The underlying Notifications API for permission is async so if you want to initialize `BrowserNotification` at the same time as firing `notify`, you must first resolve `BrowserNotification.available` -promise to ensure initialization is complete, see API and example below.
-
-##### Options
-`cooldown` - disabled by default
-    - Make sure only one notification can be created during some time.
-
-`timeout` - disabled by default
-    - Timeout (auto-close) notifications after a certain time since creation.
-
+**Note** - The underlying Notifications API for permission is async so if you want to initialize `BrowserNotification` at the same time as firing `notify`, you must first resolve `BrowserNotification.availablePromise` to ensure initialization is complete, see API and example below.
 
 ### API
 `BrowserNotification({options})`
@@ -60,7 +52,7 @@ Default options:
 Takes the same arguments at the native [Notification API call](https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification)
 
 
-`BrowserNotification.available`
+`BrowserNotification.availablePromise`
 Promise for checking wether notifications API is available.
 
 Example of initializing `BrowserNotification` and calling `notify` "at the same time". Also using timeout/cooldown feature
@@ -69,7 +61,7 @@ const notifier = BrowserNotification({
     timeout: 3000,  // Auto-close notifications after 3 sec
     cooldown: 3000,  // Ignore new notify calls for 3 sec
 });
-notifier.available.then(function(isAvailable) {
+notifier.availablePromise.then(function(isAvailable) {
   notifier.notify('Ping!');
 
   if (isAvailable) {

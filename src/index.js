@@ -7,7 +7,7 @@ function BrowserNotification(options) {
     // Return no-op function and mock promise
     return {
       notify: () => {},
-      available: {
+      availablePromise: {
         then: fn => {
           fn(false);
         }
@@ -86,7 +86,7 @@ function BrowserNotification(options) {
 
   return {
     notify: notify,
-    available: availablePromise
+    availablePromise: availablePromise
   };
 }
 
