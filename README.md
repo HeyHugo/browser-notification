@@ -1,13 +1,14 @@
 # browser-notification
 
-Small library built around browsers native [Notification-API](https://developer.mozilla.org/en-US/docs/Web/API/Notification) with some useful default behavior.
-(A particular good fit for chat/messaging -type applications)
+Tiny library built around browsers native [Notification-API](https://developer.mozilla.org/en-US/docs/Web/API/Notification) with some useful default behavior.
+
+[Demo](http://jsbin.com/zukenesafu/edit?js,output)
 
 **browser-notification does just a few things**
 - Look for [browser support](http://caniuse.com/#feat=notifications) and ask for user permission when initialized.
 - Clicking a notification will focus the browser tab that fired the notification.
 - `ignoreFocused` - If browser tab is already focused `notify()` -call will be ignored. **optional, default: true**
-- For API simplicity one can always fire `notify()` since in case Notifications are not available it's just a no-op.
+- For API ergonomics it's always possible to fire `notify()` since in case Notifications are not available it's just a no-op (does nothing).
 - `cooldown` - milliseconds before consecutive notification can be fired. **optional, default: 0**
 - `timeout` - milliseconds to wait before auto-closing notifications. **optional, default: 0 (disabled)**
 
