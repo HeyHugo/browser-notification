@@ -54,7 +54,7 @@ function BrowserNotification(options) {
   };
 
   function notify(title, notifyOptions) {
-    if (!available || ignoreFocused && focused || cooldownActive) {
+    if (!available || settings.ignoreFocused && focused || cooldownActive) {
       return null;
     }
 
