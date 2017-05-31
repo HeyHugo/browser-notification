@@ -2,7 +2,7 @@
 
 Tiny library built around browsers native [Notification-API](https://developer.mozilla.org/en-US/docs/Web/API/Notification) with some useful default behavior.
 
-[Demo](http://jsbin.com/zukenesafu/edit?js,output)
+[Demo](http://jsbin.com/riboqubela/edit?js,output)
 
 **browser-notification does just a few things**
 - Look for [browser support](http://caniuse.com/#feat=notifications) and ask for user permission when initialized.
@@ -26,20 +26,21 @@ A UMD build is available in `/dist` of the npm package.
 ### Usage
 
 ```
-import {BrowserNotification} from 'browser-notification';
+import {initNotifications, notify} from 'browser-notification';
 
 // Check browser support, ask permission, initialize
-const notifier = BrowserNotification();
+initNotifications();
 ...
 // Notify
-notifier.notify('This is the title.', {body: '...and this is the body'});
+notify('This is the title.', {body: '...and this is the body'});
 ```
 
-**Note** - The underlying Notifications API for permission is async so if you want to initialize `BrowserNotification` at the same time as firing `notify`, you must first resolve `BrowserNotification.availablePromise` to ensure initialization is complete, see API and example below.
+**Note** - The underlying Notifications API for permission is async so if you want to initialize at the same time as firing `notify()`, you must first resolve the promise returned from `initNotifications()` to ensure initialization is complete, see API and example below.
 
 ### API
-`BrowserNotification({options})`
-Create and setup the notifier object, asking for permission
+`initNotifications({options})`
+Create and setup the notifier object, asking for permission, returns a promise resolving a boolean indicating wheather notifications are available or not.
+
 Default options:
 
 ```
@@ -50,23 +51,21 @@ Default options:
 }
 ```
 
-`BrowserNotification.notify(title, {options})`
+`notify(title, {options})`
 Takes the same arguments at the native [Notification API call](https://developer.mozilla.org/en-US/docs/Web/API/Notification/Notification)
 returns the Notification object or null if notification was not sent.
 _The Notification object can be used to attach event handlers onclick/onclose/onerror/onshow_
 
 
-`BrowserNotification.availablePromise`
-Promise for checking wether notifications API is available.
-
-Example of initializing `BrowserNotification` and calling `notify` "at the same time". Also using timeout/cooldown feature
+Example of initializing and calling `notify` asyncronously. Also using timeout/cooldown feature
 ```
-const notifier = BrowserNotification({
+import {initNotifications, notify} from 'browser-notification';
+
+initNotifications({
     timeout: 3000,  // Auto-close notifications after 3 sec
     cooldown: 3000,  // Ignore new notify calls for 3 sec
-});
-notifier.availablePromise.then(function(isAvailable) {
-  notifier.notify('Ping!');
+}).then(function(isAvailable) {
+  notify('Ping!');
 
   if (isAvailable) {
     console.log('notification was sent');
@@ -74,5 +73,5 @@ notifier.availablePromise.then(function(isAvailable) {
   else {
     console.log('notification was not sent');
   }
-})
+});
 ```
